@@ -155,6 +155,7 @@ const UICtrl = (function() {
     showTotalCalories: function(totalCalories) {
       document.querySelector(UISelectors.totalCalories).textContent = totalCalories;
     },
+    // Hide update, delete and back button by default
     hideEditState: function() {
       UICtrl.clearInputs();
       document.querySelector(UISelectors.updateBtn).style.display = 'none';
@@ -202,6 +203,12 @@ const App = (function(ItemCtrl, UICtrl) {
       // Add new item to UI list
       UICtrl.addListItem(newItem);
 
+      // Get total calories
+      const totalCalories = ItemCtrl.getTotalCalories();
+
+      // Add total calories to UI
+      UICtrl.showTotalCalories(totalCalories);
+
       // Clear fields
       UICtrl.clearInputs();
     }
@@ -247,11 +254,6 @@ const App = (function(ItemCtrl, UICtrl) {
         // Populate list with items
         UICtrl.populateItemsList(items);
       }
-
-      // Get total calories
-      const totalCalories = ItemCtrl.getTotalCalories();
-      // Add total calories to UI
-      UICtrl.showTotalCalories(totalCalories);
 
       // Load event listeners
       loadEventListeners();
