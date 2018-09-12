@@ -1,5 +1,5 @@
 // Item Controller
-const ItemCtrl = (function() {
+const ItemCtrl = (function(StorageCtrl) {
   // Item constructor
   const Item = function(id, name, calories) {
     this.id = id;
@@ -9,11 +9,8 @@ const ItemCtrl = (function() {
 
   // Data structure
   const data = {
-    items: [
-      // { id: 0, name: 'Steak Dinner', calories: 1200 },
-      // { id: 1, name: 'Cookies', calories: 400 },
-      // { id: 2, name: 'Eggs', calories: 300 }
-    ],
+    // items: [],
+    items: StorageCtrl.getItemsFromStorage(),
     currentItem: null,
     totalCalories: 0
   }
@@ -102,10 +99,11 @@ const ItemCtrl = (function() {
 
       // Return total
       return data.totalCalories;
+      
 
     },
     logData: function() {
       return data;
     }
   }
-})();
+})(StorageCtrl);
